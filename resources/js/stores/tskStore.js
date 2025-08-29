@@ -73,9 +73,32 @@ export const  useTaskStore = defineStore('taskStore', () => {
         }
     }
 
+    const deleteTask = async (url) => {
+        try {
+            const resp = await fetch(url , {
+                method: 'DELETE',
+                 headers: { 
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${authStore.token}`,
+                },
+            })
+            const data = await resp.json();
+            if (!resp.ok) {
+                errorStore.setError(data.errors || data);
+            }else {
+                errorStore.setFlashMessage(data.message);
+                errorStore.setType(errorStore.types[1]);
+            }
+        }catch (error) {
+            errorStore.setError({message: 'Something went wrong. Please try again.'});
+        }
+    }
+
     return {
         createTask,
         updateTask,
+        deleteTask,
     }
 
 });

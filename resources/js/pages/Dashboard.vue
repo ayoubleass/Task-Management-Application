@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-100  h-screen">
+    <div class="bg-gray-100  min-h-screen">
         <div class="flex flex-col w-full m-auto max-w-screen-xl p-5 ">
             <div class="mt-6 w-full flex items-center justify-end ">
                 <RouterLink
@@ -27,7 +27,8 @@
     import {useProjectStore} from '@/stores/projectStore.js';
     import ProjectCard from '@/components/ProjectCard.vue';
     import { RouterLink, useRouter } from 'vue-router';
-   
+  
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
     const authStore = useAuthStore();
     const projectStore = useProjectStore();
     const router = useRouter();
@@ -40,7 +41,7 @@
     
     onMounted(async () => {
         await projectStore.fetchProjects(
-            'http://127.0.0.1:8000/api/projects',
+            `${baseUrl}/projects`,
             authStore.token
         );
     });

@@ -5,7 +5,6 @@
       <FlashMessage :message="errorStore.errors.message"  :type="errorStore.type"/>
     </template>
     <div class="px-5 py-6 bg-white rounded-xl shadow-lg lg:w-1/3 w-90">
-    
     <!-- Title -->
     <div class="text-center mb-6 text-blue-500">
         <h2 class="text-2xl font-bold ">
@@ -24,7 +23,7 @@
           />
 
           <div v-if="Array.isArray(errorStore.errors?.title)" class="text-red-500">
-              {{ errorStore.errors?.title[0] }}
+              {{ errorStore.errors.title[0] }}
             </div>
 
         </div>
@@ -82,11 +81,12 @@
         if (action.value !== 'update') {
           await projectStore.createProject('http://127.0.0.1:8000/api/project',
                   projectInputs);
-          errorStore.setError('Project created successfully!');
         } else {
           await projectStore.updateProject(`http://127.0.0.1:8000/api/project/${route.query?.id}`,
                   projectInputs);
         }
+
+        router.push('/Dashboard');
     }
 
     watch(

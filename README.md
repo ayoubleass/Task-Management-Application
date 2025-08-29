@@ -36,3 +36,13 @@ npm install
 5. **Run the development server:**
 php artisan serve
 npm run dev
+
+Notes:
+Make sure to configure your API base URL in the .env file.
+
+Example:
+
+VITE_API_BASE_URL=http://127.0.0.1:8000/api
+
+
+⚠️ If endpoints are not working, update VITE_API_BASE_URL to match your backend server address.

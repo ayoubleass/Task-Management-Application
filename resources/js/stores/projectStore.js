@@ -50,7 +50,8 @@ export const useProjectStore = defineStore('projectStore', () => {
             const data = await resp.json();
             if (!resp.ok) {
                 errorStore.setError(data.errors || data);
-            }else {
+                errorStore.setType(errorStore.types[0]);
+            } else {
                 errorStore.setFlashMessage(data.message);
                 errorStore.setType(errorStore.types[1]);
             }

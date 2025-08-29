@@ -27,10 +27,16 @@
        </button>
 
        <button
-        @click="updateTask(tache)"
+        @click="deleteTask(tache)"
         class="px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 cursor-pointer"
       >
         Delete
+      </button>
+
+       <button
+        class="px-3 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 cursor-pointer"
+      >
+        change statuts
       </button>
       </div>
     </div>
@@ -39,8 +45,11 @@
 
 <script setup>
   import { useRouter } from 'vue-router';
-
+  import { useTaskStore } from '@/stores/tskStore';
+  
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const router = useRouter();
+  const taskStore = useTaskStore();
 
   const props = defineProps({
     tache: {
@@ -62,4 +71,10 @@
   const updateTask = (task) => {
     router.push(`/project/${task.project_id}/task?id=${task.id}&action=update`);
   }
+
+  const deleteTask = async () => {
+    await taskStore.deleteTask(`${baseUrl}/tasks/${props.tache.id}`);
+  }
+
+
 </script>
