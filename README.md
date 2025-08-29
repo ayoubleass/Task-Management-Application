@@ -36,11 +36,3 @@ npm install
 5. **Run the development server:**
 php artisan serve
 npm run dev
-
-Notes:
-    
-
-
-
-
-
