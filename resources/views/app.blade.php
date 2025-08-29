@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Crud app</title>
+        <title>Task manager</title>
         @vite('resources/js/app.js')
     </head>
     <body>
